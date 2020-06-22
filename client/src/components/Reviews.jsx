@@ -5,7 +5,7 @@ const Reviews = (props) => {
   return (
     <>
       <div>
-        {props.reviews.map((review, i) => { return <Review key={i} review={review} rating={review.rating} index={i}  />})}
+        {props.reviews.map((review, i) => { return <Review key={i} review={review} index={i}  />})}
       </div>
     </>
   )

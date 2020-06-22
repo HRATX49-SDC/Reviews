@@ -11,29 +11,36 @@ class App extends React.Component {
         reviews: [
             {
                 title: 'This is a great review',
-                user: 'User_name',
+                name: 'User_name',
                 rating: [
-                  { "value": 1 },
-                  { "taste": 5 },
-                  { "quality": 5 },
+                  [ "value", 5 ],
+                  [ "taste", 4 ],
+                  [ "quality", 3 ]
                 ],
-                writtenDate: '01-22-2020',
+                // value: 1,
+                // taste: 2,
+                // quality: 3,
+                reviewAvg: 0,
+                date: '01-22-2020',
                 content: 'This was such a great cat. would definitely purchase again.',
-                isReviewHelpful: 'helpful',
+                isReviewHelpful: 0,
                 id: 1
             },
             {
                 title: 'This is a great review',
-                user: 'User_name',
+                name: 'User_name',
                 rating: [
-                  { "value": 3 },
-                  { "taste": 1 },
-                  { "quality": 5 }
+                  [ "value", 1 ],
+                  [ "taste", 2 ],
+                  [ "quality", 3 ]
                 ],
-                // ],
+                // value: 1,
+                // taste: 2,
+                // quality: 3,
+                reviewAvg: 0,
                 writtenDate: '01-22-2020',
-                content: 'This was such a great cat. would definitely purchase again.',
-                isReviewHelpful: 'helpful',
+                content: 'This was such a terrrible cat. would definitely purchase again.',
+                isReviewHelpful: 0,
                 id: 2
             },
         ],
@@ -102,7 +109,7 @@ class App extends React.Component {
         <DashBoard data={this.state} />
         <button type="button" onClick={(e) => this.getAverageRating(e)}>get Average rating</button>
         <Filter state={this.state} />
-        <Reviews reviews={this.state.reviews}/>
+        <Reviews reviews={this.state.reviews} rating={this.state.reviews.rating}/>
         <button className="primary">Write a review</button>
       </>
      )
@@ -110,41 +117,3 @@ class App extends React.Component {
 }
  
 export default App;
-
-// {
-//                 title: '2',
-//                 user: '2',
-//                 rating: {
-//                     "value": 1,
-//                     "taste": 3,
-//                     "quality": 3
-//                 },
-//                 writtenDate: '01-22-2020',
-//                 content: 'This was such a great cat. would definitely purchase again.',
-//                 isReviewHelpful: 'helpful',
-//             },
-//             {
-//                 title: '1',
-//                 user: '1',
-//                 rating: {
-//                     "value": 1,
-//                     "taste": 3,
-//                     "quality": 3
-//                 },
-//                 writtenDate: '01-23-2020',
-//                 content: 'This was such a great cat. would definitely purchase again.',
-//                 isReviewHelpful: 'helpful',
-//             },
-//             {
-//                 title: '3',
-//                 user: '3',
-//                 rating: {
-//                     "value": 1,
-//                     "taste": 3,
-//                     "quality": 3
-//                 },
-//                 writtenDate: '01-22-2020',
-//                 content: 'This was such a great cat. would definitely purchase again.',
-//                 isReviewHelpful: 'helpful',
-//             },
-
