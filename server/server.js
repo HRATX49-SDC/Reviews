@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const database = require('../db/queries.js');
+const db = require('../db/queries.js');
 
 const app = express();
 
@@ -14,15 +14,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Routes
 
 app.get('/Purrget', (req, res) => {
-    database.getCatReviews(req.query.name)
-    .then(res => {
+    db.getCatReviews((err, results) => {
+    if (err) { 
+        res.status(500)
+        .send(err);
+    } else {
         res.status(200)
-        .send(cat);
-    })
-    .catch(err => { 
-    console.log(err)
-    res.sendStatus(400);
-    })
+        .send(results)
+    }
+  })
 })
 
 

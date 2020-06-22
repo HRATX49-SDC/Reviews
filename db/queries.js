@@ -1,7 +1,6 @@
-require('dotenv').config();
 const mysql = require('mysql');
 
-let connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'HackReactor1',
@@ -18,16 +17,16 @@ connection.connect(err => {
 
 
 
-connection.getCatReviews = () => {
-    connection.query(`select * from Cats where (cat_name) = "Luna" `, (err, results) => {
+const getCatReviews = function(callback) {
+    connection.query(`select * from cats`, (err, results) => {
         if (err) {
-            console.log(err, null);
+            console.log('err in database query');
+            callback(err, null);
         } else {
-            console.log(results)
-            res.send(results);
+            callback(null, results);
         }
     })
 }
 
 
-module.exports = connection;
+module.exports = getCatReviews;

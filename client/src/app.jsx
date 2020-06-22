@@ -1,5 +1,5 @@
 import React from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import Filter from './components/Filter.jsx';
 import Reviews from './components/Reviews.jsx';
 import DashBoard from './components/Dashboard.jsx';
@@ -8,42 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
-        reviews: [
-            {
-                title: 'This is a great review',
-                name: 'User_name',
-                rating: [
-                  [ "value", 5 ],
-                  [ "taste", 4 ],
-                  [ "quality", 3 ]
-                ],
-                // value: 1,
-                // taste: 2,
-                // quality: 3,
-                reviewAvg: 0,
-                date: '01-22-2020',
-                content: 'This was such a great cat. would definitely purchase again.',
-                isReviewHelpful: 0,
-                id: 1
-            },
-            {
-                title: 'This is a great review',
-                name: 'User_name',
-                rating: [
-                  [ "value", 1 ],
-                  [ "taste", 2 ],
-                  [ "quality", 3 ]
-                ],
-                // value: 1,
-                // taste: 2,
-                // quality: 3,
-                reviewAvg: 0,
-                writtenDate: '01-22-2020',
-                content: 'This was such a terrrible cat. would definitely purchase again.',
-                isReviewHelpful: 0,
-                id: 2
-            },
-        ],
+        reviews: [],
         numberOfReviews: 0,
         totalNumberOfRatings: 0,
         avgRating: 0,
@@ -52,6 +17,8 @@ class App extends React.Component {
         recommendations: 3
       }
       this.getAverageRating = this.getAverageRating.bind(this);
+      this.getCats = this.getCats.bind(this);
+
   }
 
 
@@ -88,20 +55,27 @@ class App extends React.Component {
       });
   }
 
-  // componentDidMount() {
-  // this.getAverageRating();
-  //   axios.get('/Purrget')
-  //     .then(res => {
-  //       console.log(res.data)
-  //       this.setState({
-  //         reviews: res.data,
+  getCats() {
+    axios.get('/Purrget')
+    .then(res => {
+      this.setState({ reviews: res.data });
+    })
+  } 
+
+  componentDidMount() {
+  this.getAverageRating();
+    axios.get('/Purrget')
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          reviews: res.data,
             
-  //       })
-  //     })
-  //     .catch(err => {
-  //     console.log('err', err) ;
-  //     })
-    // }
+        })
+      })
+      .catch(err => {
+      console.log('err', err) ;
+      })
+    }
 
   render() {
     return ( 
@@ -117,3 +91,39 @@ class App extends React.Component {
 }
  
 export default App;
+
+            // {
+            //     title: 'This is a great review',
+            //     name: 'User_name',
+            //     rating: [
+            //       [ "value", 5 ],
+            //       [ "taste", 4 ],
+            //       [ "quality", 3 ]
+            //     ],
+            //     // value: 1,
+            //     // taste: 2,
+            //     // quality: 3,
+            //     reviewAvg: 0,
+            //     date: '01-22-2020',
+            //     content: "This was such a great cat. would definitely purchase again.This was such a great cat. would definitely purchase again.This wassuch a great cat. would definitely purchase again.This was such a great cat. would definitely purchase again.This was such a great cat. w/nould definitely purchase again.This was such a great cat. would definitely purchase again.This was such a great cat. would definitely purchase again.This was such a great cat. would definitely purchase again.",
+            //     isReviewHelpful: 0,
+            //     id: 1
+            // },
+            // {
+            //     title: 'This is a great review',
+            //     name: 'User_name',
+            //     rating: [
+            //       [ "value", 5 ],
+            //       [ "taste", 4 ],
+            //       [ "quality", 3 ]
+            //     ],
+            //     // value: 1,
+            //     // taste: 2,
+            //     // quality: 3,
+            //     reviewAvg: 0,
+            //     date: '01-22-2020',
+            //     content: 'This was such a terrrible cat. would definitely purchase again.',
+            //     isReviewHelpful: 0,
+            //     id: 2
+            // },
+
