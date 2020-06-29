@@ -1,6 +1,5 @@
 "use strict";
 
-require('dotenv').config();
 
 var express = require('express');
 
@@ -31,6 +30,6 @@ app.get("/reviews/:catName", function (req, res) {
   });
 }); // Run Server
 
-app.listen(process.env.PORT, function () {
-  console.log("Ready on port ".concat(process.env.PORT));
+app.listen(PORT, function () {
+  console.log("Ready on port ".concat(PORT));
 });
