@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'HackReactor1',
-    database: 'Purrget',
+    database: 'purrget',
 })
 
 connection.connect(err => {
@@ -17,16 +17,19 @@ connection.connect(err => {
 
 
 
-const getCatReviews = function(callback) {
-    connection.query(`select * from cats`, (err, results) => {
+connection.getCatReviews = (catName, cb) => {
+    connection.query('select * from reviews INNER JOIN cats ON (cats.catName=(?) AND reviews.cat_id=cats.id )', catName, (err, results) => {
         if (err) {
-            console.log('err in database query');
-            callback(err, null);
+            console.log(err, 'err in database query');
+            cb(err, null);
         } else {
-            callback(null, results);
+            console.log(results);
+            cb(null, results);
         }
     })
-}
+};
 
 
-module.exports = getCatReviews;
+module.exports = connection;
+
+// INNER JOIN cats ON (cats.catName =(?) AND reviews.cat_id=cats.id)
