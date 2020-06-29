@@ -4,6 +4,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('../db/queries.js');
 
+const PORT = process.env.PORT || 5200;
+
 const app = express();
 
 // MiddleWare

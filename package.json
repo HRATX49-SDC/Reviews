@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-server": "nodemon server/server.js",
     "dev-compile": "webpack -d -w",
-    "seed": "mysql -u root -p < db/schema.sql"
+    "seed": "mysql -u root -p < db/schema.sql",
+    "start": "node server/server.compiled.js", 
+    "build": "babel server/server.js --out-file server/server.compiled.js"
   },
   "repository": {
     "type": "git",
@@ -35,7 +37,6 @@
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
-    "babel": "^6.23.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.6.0",
     "dotenv": "^8.2.0",
