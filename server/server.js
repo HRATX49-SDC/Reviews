@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -40,6 +39,6 @@ console.log(req.params.catName)
 })
 
 // Run Server
-app.listen(process.env.PORT, () => {
-    console.log(`Ready on port ${process.env.PORT}`);
+app.listen(PORT, () => {
+    console.log(`Ready on port ${PORT}`);
 })
