@@ -37,6 +37,7 @@ CREATE TABLE reviews (
   review_content VARCHAR(255) NOT NULL,
   review_is_helpful INT NOT NULL DEFAULT 0,
   review_is_not_helpful INT NOT NULL DEFAULT 0,
+  recommendation VARCHAR(255) DEFAULT NULL,
   review_date DATE NOT NULL DEFAULT (CURRENT_DATE),
   INDEX cat_ind (cat_id),
     FOREIGN KEY (cat_id)
@@ -328,18 +329,24 @@ INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_
 (8,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
 (8,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
-INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(9,'This is a terrible cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
-INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(9,'This is a horrible cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
-INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(9,'This is a nice cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
-INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(9,'This is an ugly cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
-INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(9,'This is a fat cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
-INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(9,'This is a nice cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+
+
+
+INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful, recommendation) VALUES
+(9,'This is a terrible cat', 'user_name', 3, 4, 2 , 1 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0, 'Would recommend');
+INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful, recommendation) VALUES
+(9,'This is a horrible cat', 'user_name', 3, 3, 2 , 4 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0, 'Would not recommend');
+INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful, recommendation) VALUES
+(9,'This is a nice cat', 'user_name', 3, 3, 3, 4, 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0, 'Would recommend');
+INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful, recommendation) VALUES
+(9,'This is an ugly cat', 'user_name', 3, 2, 4, 3, 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0, 'Would not recommend');
+INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful, recommendation) VALUES
+(9,'This is a fat cat', 'user_name', 3, 5, 4, 3, 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0, 'Would recommend');
+INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful, recommendation) VALUES
+(9,'This is a nice cat', 'user_name', 3, 1, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0, 'Would not recommend');
+
+
+
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
 (10,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES

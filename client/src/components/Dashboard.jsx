@@ -16,7 +16,7 @@ const DashBoard = (props) => {
                         {props.data.avgRating}
                       </div>
                       <div className="starzzz">
-                        {[...Array(5)].map((n, i) => i >= props.data.avgRating ? <i key={i} className="fas fa-star"></i> : <i key={i} className="far fa-star"></i>)}
+                        {[...Array(5)].map((n, i) => i >= props.data.avgRating ? <i key={i} className="far fa-star"></i> : <i key={i} className="fas fa-star"></i>)}
                       </div>
                       <div className="h-text">
                         <div>{props.data.totalNumberOfRatings} star ratings</div>
@@ -48,13 +48,13 @@ const DashBoard = (props) => {
                               fill="b85300"
                               x="19"
                               y="24.6"
-                              >{props.data.avgRating}</text>
+                              >{props.data.recommendationPercent}</text>
                             </svg>
                             </div>
                         </div>
 
                             <div className="percent-recommend">
-                              {props.data.avgRating}% would recommend
+                              {props.data.recommendationPercent}% would recommend
                             </div>
                           <div className="total-recs">
                             {props.data.recommendations} {props.data.recommendations !== 1 ? 'recommendations' : 'recommendation'}

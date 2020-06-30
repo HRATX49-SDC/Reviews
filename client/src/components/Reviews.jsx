@@ -12,7 +12,7 @@ const Reviews = (props) => {
         <Button expanded={props.expanded} createReview={props.createReview}/>
         <div className="reviews-h">
         <Filter sort={(e) => props.sort(e)} sortTypes={props.sortTypes} filterTypes={props.filterTypes}/>
-        <div className="matching-reviews">We found {props.numberOfReviews} matching reviews</div>
+        <div className="matching-reviews">We found {props.state.numberOfReviews} matching reviews</div>
           {props.reviews.map((review, i) =>  {
                return ( <Review 
                     key={i}

@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import $ from "jquery";
 import Reviews from './components/Reviews.jsx';
 import DashBoard from './components/Dashboard.jsx';
-// import Button from './components/Button.jsx';
 
 
 class App extends React.Component {
@@ -45,7 +45,7 @@ class App extends React.Component {
         // filteredReviews: [],
         // sortBy: 'most recent',
         // filterBy: '',
-        expanded: true,
+        expanded: false,
         sortTypes: ['most recent', 'highest rated', 'lowest rated', 'most helpful'],
         filterTypes: ['5 stars', '4 stars', '3 stars', '2 stars', '1 star', '0 stars'],
         catName: 'Luna',
@@ -58,9 +58,9 @@ class App extends React.Component {
           [ "Taste", 0 ],
           [ "Quality", 0 ]
         ],
-        wouldRecommend: 0,
-        numberOfRatings: 12,
-        recommendations: 0
+        numberOfRatings: 0,
+        recommendations: 0,
+        recommendationPercent: 0
       }
       this.getAverageRating = this.getAverageRating.bind(this);
       this.getAllReviewsAverages = this.getAllReviewsAverages.bind(this);
@@ -72,7 +72,6 @@ class App extends React.Component {
       this.writeReview = this.writeReview.bind(this);
   }
 
-
   filterByRating(e) {
     let filter = e.target.value;
     if (filter === " 5 stars") {
@@ -80,40 +79,43 @@ class App extends React.Component {
     }
   }
 
-  getRecommendations() {
-    let reviews = this.state.reviews;
-    let totalRecommendations = 0;
+  getRecommendations(reviews) {
+  console.log(reviews)
+    var totalRecommendations = 0;
     for (var i = 0; i < reviews.length; i++) {
-        let currentReview = reviews[i].recommendation;
-        if (currentReview === "Would recommend") {
+        var currentRecommendation = reviews[i].recommendation;
+        if (currentRecommendation === "Would recommend") {
           totalRecommendations ++;
         }
     }
-    this.setState({ recommendations: totalRecommendations });
+    var total = totalRecommendations / reviews.length;
+    var percent = total * 100;
+    this.setState({
+    recommendations: totalRecommendations,
+    recommendationPercent: percent
+    });
   }
 
-  getAverageRating() {
-    var totalRatings = 0;
-      var reviews = this.state.reviews;
+  getAverageRating(reviews) {
+    var reviews = reviews;
       for (var i = 0; i < reviews.length; i++) {
-      var rating = reviews[i].rating;
-        for (var j = 0; j < rating[i].length; j++) {
-        var currentRating = rating[i][1]
+        var totalRatings = 0;
+        var rating = reviews[i].rating;
+        for (var j = 0; j < rating.length; j++) {
+        var currentRating = rating[j][1]
           totalRatings += currentRating;
-          var avg = totalRatings / 5;
         }
       }
+      var avg = this.state.totalNumberOfRatings / reviews.length;
       this.setState({
-        avgRating: avg,
-        totalNumberOfRatings: totalRatings,
-        numberOfReviews: this.state.reviews.length
+        avgRating: avg
       });
   }
 
-  getAllReviewsAverages() {
-      var avgs = this.state.avgRatings;
-      var reviews = this.state.reviews;
-      var totalVal = 0,
+  getAllReviewsAverages(reviews) {
+      var reviews = reviews;
+      var totalStars = 0,
+          totalVal = 0,
           totalTaste = 0,
           totalQuality = 0;
       for (var i = 0; i < reviews.length; i++) {
@@ -125,15 +127,19 @@ class App extends React.Component {
         totalTaste += currentTaste;
         totalQuality += currentQuality;
       }
+        totalStars += totalVal;
       let avgVal = totalVal / reviews.length,
        avgTaste = totalTaste / reviews.length,
        avgQuality = totalQuality / reviews.length,
        averages = [
-        ["Value", avgVal],
-        ["Taste", avgTaste],
-        ["Quality", avgQuality]
-      ]
-        this.setState({ avgRatings: averages });
+        ["Value", Math.round(avgVal)],
+        ["Taste", Math.round(avgTaste)],
+        ["Quality", Math.floor(avgQuality)]
+      ];
+        this.setState({
+        avgRatings: averages,
+        totalNumberOfRatings: totalStars
+        });
   }
 
   sortBy(e) {
@@ -156,21 +162,29 @@ class App extends React.Component {
     let review = reviews[i];
     review.review_is_helpful = review.review_is_helpful += 1;
     this.setState({ reviews });
-    console.log(review.review_is_helpful)
   }
 
   getReviews() {
     axios.get(`/reviews/${this.state.catName}`)
-    // {
-    // params: {
-    //   catName
-    // }
-    // })
-    // 
-    .then(res => {
-      this.setState({
-      reviews: [res.data]
+      .then( (res) => {
+      let reviews = res.data;
+      reviews.forEach((review) => {
+        review.rating = [
+          ['Value', review.review_value],
+          ['Taste', review.review_taste],
+          ["Quality", review.review_quality]
+        ]
       })
+      this.setState({
+      reviews: reviews,
+      numberOfReviews: reviews.length
+      })
+      return this.state.reviews;
+    })
+    .then(res => {
+      this.getAllReviewsAverages(res);
+      this.getAverageRating(res);
+      this.getRecommendations(res);
     })
     .catch(err => {
       console.log(err, 'err getting reviews')
@@ -184,28 +198,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/reviews/${this.state.catName}`)
-      .then( res => {
-      console.log(res.data)
-      let cats = res.data;
-      cats.forEach((review) => {
-        review.rating = [
-          ['Value', review.review_value],
-          ['Taste', review.review_taste],
-          ["Quality", review.review_quality]
-        ]
-      })
-      this.setState({
-      reviews: cats
-      })
-      console.log(res.data)
+    
+    $('#search').on('submit', function() {
+      let data = $('#search :input')
     })
-    .catch(err => {
-      console.log(err, 'err getting reviews')
+
+    $('#login_form').submit(function() {
+      var data = $("#login_form :input").serializeArray();
+      alert('Handler for .submit() called.');
     })
-    this.getAverageRating();
-    this.getAllReviewsAverages();
-    this.getRecommendations();
+    this.getReviews('Luna')
   }
 
 
@@ -213,7 +215,7 @@ class App extends React.Component {
   render() {
     return ( 
       <>
-        <DashBoard data={this.state} averages={this.state.avgRatings} />
+        <DashBoard data={this.state} totalRatings={this.state.totalNumberOfRatings} averages={this.state.avgRatings} />
         {/* <button type="button" onClick={(e) => this.getAverageRating(e)}>get Average rating</button> */}
         <Reviews
           reviews={this.state.reviews}
