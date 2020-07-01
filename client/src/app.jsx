@@ -167,12 +167,7 @@ class App extends React.Component {
   }
 
   getReviews(catName) {
-    axios.get(`/reviews`,
-    {
-      params: {
-        catName
-      }
-    })
+    axios.get('/reviews', {params: {catName}})
       .then( (res) => {
       let reviews = res.data;
       reviews.forEach((review) => {
@@ -241,7 +236,6 @@ class App extends React.Component {
     return ( 
       <>
         <DashBoard data={this.state} totalRatings={this.state.totalNumberOfRatings} averages={this.state.avgRatings} />
-        {/* <button type="button" onClick={(e) => this.getAverageRating(e)}>get Average rating</button> */}
         <Reviews
           reviews={this.state.reviews}
           state={this.state}

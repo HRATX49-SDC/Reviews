@@ -14,9 +14,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 
-app.get(`/reviews/:catName`, (req, res) => {
-console.log(req.params.catName) 
-    db.getCatReviews(req.params.catName, (err, results) => {
+app.get(`/reviews`, (req, res) => {
+console.log(req.query.catName);
+    db.getCatReviews(req.query.catName, (err, results) => {
     if (err) {
       console.log(err, 'err getting from server')
       res.sendStatus(404);
