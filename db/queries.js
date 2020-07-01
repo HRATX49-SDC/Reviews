@@ -30,6 +30,17 @@ connection.getCatReviews = (catName, cb) => {
     })
 };
 
+connection.addReview = (author, title, content, rating, recommendation, cb) => {
+    connection.query('insert into reviews (review_author, review_title, review_content, review_rating, review_value, review_taste, review_quality, review_recommendation) values ()', params, (err, results) => {
+        if (err) {
+        console.log(err, 'err in db query')
+            cb(err, null);
+        } else {
+            cb(null, results);
+        }
+    })
+}
+
 
 module.exports = connection;
 

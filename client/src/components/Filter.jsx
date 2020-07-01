@@ -9,8 +9,8 @@ const Filter = (props) => {
             <select onChange={(e) => props.sort(e)}>
                 {props.sortTypes.map((e, i) => { return ( <option key={i} value={e}>sort by {e}</option> )})}
             </select>
-            <select >
-                {props.filterTypes.map((e, i) => { return (<option key={i} value={e.id}>filter by {e}</option> )})}
+            <select onChange={(e) => props.filter(e)}>
+                {props.filterTypes.map((e, i) => { return (<option key={i} value={e}>filter by {e}</option> )})}
             </select>
           </form>
         </div>

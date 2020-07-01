@@ -10,38 +10,7 @@ class App extends React.Component {
     super(props);
       this.state = {
         reviews: [],
-        catName: 'Luna',
-            // {
-            //     title: 'This is a great review',
-            //     name: 'User_name',
-            //     rating: [
-            //       [ "Value", 1 ],
-            //       [ "Taste", 2 ],
-            //       [ "Quality", 3 ]
-            //     ],
-            //     reviewAvg: 0,
-            //     date: '01-22-2020',
-            //     content: " review w/ id = 1. This was such a great cat. would definitely purchase again.This was such a great cat. would definitely purchase again.This wassuch a great cat. would definitely purchase again.This was such a great cat. would definitely purchase again.This was such a great cat. w/nould definitely purchase again.This was such a great cat. would definitely purchase again.This was such a great cat. would definitely purchase again.This was such a great cat. would definitely purchase again.",
-            //     reviewIsHelpful: 0,
-            //     recommendation: "Would not recommend",
-            //     id: 1
-            // },
-            // {
-            //     title: 'This is another review',
-            //     name: 'User_name',
-            //     rating: [
-            //       [ "Value", 4 ],
-            //       [ "Taste", 2 ],
-            //       [ "Quality", 1 ]
-            //     ],
-            //     reviewAvg: 0,
-            //     date: '01-22-2020',
-            //     content: 'review w/ id = 2. This was such a terrrible cat. would definitely purchase again.',
-            //     reviewIsHelpful: 0,
-            //     recommendation: "Would recommend",
-            //     id: 2
-            // }
-            
+        catName: 'Luna',            
         // filteredReviews: [],
         // sortBy: 'most recent',
         // filterBy: '',
@@ -60,7 +29,19 @@ class App extends React.Component {
         ],
         numberOfRatings: 0,
         recommendations: 0,
-        recommendationPercent: 0
+        recommendationPercent: 0,
+        form: {
+        cat: '',
+          author: '',
+          title: '',
+          content: '',
+          recommendation: '',
+          rating: {
+            'Value': 0,
+            'Taste': 0,
+            'Quality': 0
+          }
+        }
       }
       this.getAverageRating = this.getAverageRating.bind(this);
       this.getAllReviewsAverages = this.getAllReviewsAverages.bind(this);
@@ -70,13 +51,34 @@ class App extends React.Component {
       this.updateHelpfulCounter = this.updateHelpfulCounter.bind(this);
       this.sortBy = this.sortBy.bind(this);
       this.writeReview = this.writeReview.bind(this);
+      this.changeField = this.changeField.bind(this);
+  }
+
+  getTime() {
+
   }
 
   filterByRating(e) {
     let filter = e.target.value;
-    if (filter === " 5 stars") {
-        this.setState({ reviews: this.state.reviews });
+    let filteredReviews = this.state.reviews;
+    if (filter === "5 stars") {
+      filteredReviews = this.state.reviews.filter(review => review.review_value === 5);
+    } else if (filter === "4 stars") {
+      filteredReviews = this.state.reviews.filter(review => review.review_value === 4);
+    } else if (filter === "3 stars") {
+      filteredReviews = this.state.reviews.filter(review => review.review_value === 3);
+    } else if (filter === "2 stars") {
+      filteredReviews = this.state.reviews.filter(review => review.review_value === 2);
+    } else if (filter === "1 star") {
+      filteredReviews = this.state.reviews.filter(review => review.review_value === 1);
+    } else if (filter === "0 stars") {
+      filteredReviews = this.state.reviews.filter(review => review.review_value === 0);
     }
+        this.setState({
+        reviews: filteredReviews,
+        numberOfReviews: filteredReviews.length
+        });
+        // let filter = document.getElementById('filter-bar').add
   }
 
   getRecommendations(reviews) {
@@ -146,13 +148,13 @@ class App extends React.Component {
     let type = e.target.value;
     let filteredReviews = this.state.reviews;
     if (type === 'most recent')
-        filteredReviews = this.state.reviews.sort((a, b) => { return a.date - b.date })
+        filteredReviews = this.state.reviews.sort((a, b) => { return a.review_date - b.review_date })
     else if (type === 'highest rated')
-        filteredReviews = this.state.reviews.sort((a, b) => { return b.rating - a.rating })
+        filteredReviews = this.state.reviews.sort((a, b) => { return b.review_value - a.review_value })
     else if (type === 'lowest rated')
-        filteredReviews = this.state.reviews.sort((a, b) => { return a.rating - b.rating })
+        filteredReviews = this.state.reviews.sort((a, b) => { return a.review_value - b.review_value })
     else if (type === 'most helpful')
-        filteredReviews = this.state.reviews.sort((a, b) => { return b.reviewIsHelpful - a.reviewIsHelpful })
+        filteredReviews = this.state.reviews.sort((a, b) => { return b.review_Is_Helpful - a.review_Is_Helpful })
     else { filteredReviews = this.state.reviews.sort((a, b) => { return a.id - b.id }) }
     this.setState({ reviews: filteredReviews })
   }
@@ -192,9 +194,20 @@ class App extends React.Component {
   }
 
   writeReview() {
+    var form = this.state.form;
     let modalIsShown = this.state.expanded;
     modalIsShown = !modalIsShown;
+    var createButton = document.getElementById('createReview');
+    createButton.hidden = false;
     this.setState({ modalIsShown });
+    // axios.post('/reviews', {
+    //   params: {
+    //     content: form.content,
+    //     recommendation: form.recommendation,
+    //     rating: form.rating
+
+    //   }
+    // })
   }
 
   componentDidMount() {
@@ -210,6 +223,12 @@ class App extends React.Component {
     this.getReviews('Luna')
   }
 
+  changeField(e, field) {
+    let form = this.state.form;
+    form[field] = event.target.value;
+    this.setState({ form });
+  }
+
 
 
   render() {
@@ -222,10 +241,13 @@ class App extends React.Component {
           state={this.state}
           sort={(e) => this.sortBy(e)}
           sortTypes={this.state.sortTypes}
+          filter={this.filterByRating}
           filterTypes={this.state.filterTypes}
           helpful={this.updateHelpfulCounter}
           createReview={this.writeReview}
           expanded={this.state.expanded}
+          formData={this.state.form}
+          form={this.changeField}
         />
       </>
      )

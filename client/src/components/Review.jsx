@@ -1,8 +1,9 @@
 import React from 'react';
 import Ratings from './Ratings.jsx';
+import moment from 'moment'
+// import Star from './Star.jsx';
 
 const Review = (props) => {
-// console.log(props.review.reviewIsHelpful)
   let positive = 
     <svg width="24" height="24" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
@@ -24,14 +25,15 @@ const Review = (props) => {
   return (
       <>
         <div className="card">
-          <div className="review-title">{props.review.title}</div>
+          <div className="review-title">{props.review.review_title}</div>
           <div className="review-card-wrapper">
             <div className="content">
               <div className="card-rr">
                 <div className="stars-container">
                   <div className="starzzz">
                     <div className="rating">
-                      {[...Array(5)].map((n, i) => i >= props.review.rating[0][1] ? <i key={i} className="far fa-star"></i> : <i key={i} className="fas fa-star"></i>)}
+                      {[...Array(5)].map((n, i) => i >= props.review.review_value ? <i key={i} className="far fa-star"></i> : <i key={i} className="fas fa-star"></i>)}
+                      {/* {[...Array(5)].map((n, i) => n >= props.review.rating[0][1] ? <Star key={i} fill={n}/> : <Star key={i} fill={n} />)} */}
                     </div>
                   </div>
                 </div>
@@ -54,7 +56,7 @@ const Review = (props) => {
               <div className="user-review-info">
                 <span>{props.review.review_author}</span>
                   - 
-                <span className="review-date-time"> {props.review.review_date}</span>
+                <span className="review-date-time"> {moment(props.review.review_date).startOf('day').fromNow()}</span>
               </div>
               <div className="review-main-content">{props.review.review_content}</div>
               </div>

@@ -9,9 +9,9 @@ const Reviews = (props) => {
     return (
       <>
 
-        <Button expanded={props.expanded} createReview={props.createReview}/>
+        <Button expanded={props.expanded} createReview={props.createReview} form={props.form} formData={props.formData}/>
         <div className="reviews-h">
-        <Filter sort={(e) => props.sort(e)} sortTypes={props.sortTypes} filterTypes={props.filterTypes}/>
+        <Filter sort={(e) => props.sort(e)} sortTypes={props.sortTypes} filter={props.filter} filterTypes={props.filterTypes}/>
         <div className="matching-reviews">We found {props.state.numberOfReviews} matching reviews</div>
           {props.reviews.map((review, i) =>  {
                return ( <Review 
@@ -21,14 +21,14 @@ const Reviews = (props) => {
                     index={i}
                     sort={(e) => props.sortBy(e)}
                     sortTypes={props.sortTypes}
-                    // filterTypes={this.state.filterTypes}
+                    // filterTypes={props.filterTypes}
                     helpful={props.helpful}
                     createReview={props.writeReview}
                     expanded={props.expanded}
                   />
           )})}
         </div>
-        <Button createReview={props.createReview}/>
+        <Button createReview={props.createReview} form={props.form} formData={props.formData}/>
       </>
     )
 }

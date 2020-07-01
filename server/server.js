@@ -38,6 +38,16 @@ console.log(req.params.catName)
   })
 })
 
+app.post(`/reviews`, (req, res) => {
+  db.addReview(req.params.body, (err, results) => {
+    if (err) {
+      res.sendStatus(404);
+    } else {
+      res.status(200)
+    }
+  })
+})
+
 // Run Server
 app.listen(PORT, () => {
     console.log(`Ready on port ${PORT}`);
