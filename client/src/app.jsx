@@ -166,13 +166,13 @@ class App extends React.Component {
     this.setState({ reviews });
   }
 
-  getReviews() {
-    axios.get(`/reviews/${this.state.catName}`)
-    // {
-    //   params: {
-    //     catName
-    //   }
-    // })
+  getReviews(catName) {
+    axios.get(`/reviews`,
+    {
+      params: {
+        catName
+      }
+    })
       .then( (res) => {
       let reviews = res.data;
       reviews.forEach((review) => {
