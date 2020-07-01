@@ -170,6 +170,7 @@ class App extends React.Component {
     axios.get('/reviews', {params: {catName}})
       .then( (res) => {
       let reviews = res.data;
+      // console.log('reviews:', reviews)
       reviews.forEach((review) => {
         review.rating = [
           ['Value', review.review_value],
@@ -181,6 +182,7 @@ class App extends React.Component {
       reviews: reviews,
       numberOfReviews: reviews.length
       })
+      // console.log("should log reviews:", this.state.reviews)
       return this.state.reviews;
     })
     .then(res => {

@@ -21,10 +21,10 @@ connection.connect(err => {
 connection.getCatReviews = (catName, cb) => {
     connection.query('select * from reviews INNER JOIN cats ON (cats.catName=(?) AND reviews.cat_id=cats.id )', catName, (err, results) => {
         if (err) {
-            console.log(err, 'err in database query');
+            console.log(err, 'err in database query')
             cb(err, null);
         } else {
-            console.log(results);
+            // console.log(results)
             cb(null, results);
         }
     })
