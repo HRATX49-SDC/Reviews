@@ -10,7 +10,7 @@ class App extends React.Component {
     super(props);
       this.state = {
         reviews: [],
-        catName: 'Luna',            
+        catName: 'Luna',         
         // filteredReviews: [],
         // sortBy: 'most recent',
         // filterBy: '',
@@ -168,6 +168,11 @@ class App extends React.Component {
 
   getReviews() {
     axios.get(`/reviews/${this.state.catName}`)
+    // {
+    //   params: {
+    //     catName
+    //   }
+    // })
       .then( (res) => {
       let reviews = res.data;
       reviews.forEach((review) => {
@@ -211,16 +216,17 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    
-    $('#search').on('submit', function() {
-      let data = $('#search :input')
+    this.getReviews('Luna');
+    $('body').on('submit', '.form', (e) => {
+      console.log(e.target[0].value);
+      let formatted = e.target[0].value.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase());
+      this.getReviews(formatted);
+    });
+
+     $('body').on('click', '.catRows', (e) => {
+      this.getReviews(e.currentTarget.value);
     })
 
-    $('#login_form').submit(function() {
-      var data = $("#login_form :input").serializeArray();
-      alert('Handler for .submit() called.');
-    })
-    this.getReviews('Luna')
   }
 
   changeField(e, field) {

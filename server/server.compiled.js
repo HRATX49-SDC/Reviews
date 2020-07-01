@@ -1,6 +1,5 @@
 "use strict";
 
-
 var express = require('express');
 
 var path = require('path');
@@ -26,6 +25,15 @@ app.get("/reviews/:catName", function (req, res) {
       res.sendStatus(404);
     } else {
       res.status(200).send(results);
+    }
+  });
+});
+app.post("/reviews", function (req, res) {
+  db.addReview(req.params.body, function (err, results) {
+    if (err) {
+      res.sendStatus(404);
+    } else {
+      res.status(200);
     }
   });
 }); // Run Server

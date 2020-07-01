@@ -319,9 +319,9 @@ svg.guBQVc {
     width: 90px;
 }
 
-*, ::before, ::after {
+/* *, ::before, ::after {
 	box-sizing: inherit;
-}
+} */
 
 .reviews-h {
 	box-sizing: border-box;
