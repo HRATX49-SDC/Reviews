@@ -3,53 +3,28 @@ import React from 'react';
 const Form = (props) => {
   return (
     <>
-      <div className="grid center middle tall image" >
-            <div className="card small">
-                <div className="content">
-                    {/* <div className="logo" style={{ backgroundImage: `url(${this.state.logo})` }}></div> */}
-                    <form onSubmit={props.submitReview}>
-                        <div className="group">
-                            <label>Name</label>
-                            <input type="text" value={props.formData.author} onChange={(e) => props.changeField(e, 'author')} />
-                        </div>
-                        <div className="group">
-                            <label>Title</label>
-                            <input type="text" value={props.formData.title} onChange={(e) => props.changeField(e, 'title')} />
-                            {/* <span style={{color:"red"}}>{this.state.emailError}</span> */}
-                        </div>
-                        <div className="group">
-                            <label>Recommendation</label>
-                            <textarea type="text" value={props.formData.password} onChange={(e) => props.changeField(e, 'recommendation')} />
-                        </div>
-                        <div className="group">
-                            <label>Would you recommend this cat?</label>
-                            <input type="checkbox" checked="checked" value={props.formData.recommendation} onChange={(e) => props.changeField(e, 'recommendation')} />
-                            {/* <span style={{color:"red"}}>{this.state.emailError}</span> */}
-                        </div>
-                        {/* <div className="group">
-                            <label>Location</label>
-                            <input type="text" value={props.formData.recommendation} onChange={(e) => props.changeField(e, 'location')} />
-                        </div> */}
-                        {/* <div className="group">
-                            <label>Profile Picture</label>
-                            <input type="file" />
-                        </div> */}
-
-                        <button className="primary">Submit</button>
-                    </form>
-                    {/* <span style={{color:"red"}}>{this.state.errorMsg}</span> */}
-                    <p className="footer">
-                        {/* Already have an account? <Link to="/login">Login</Link> */}
-                    </p>
-                </div>
+        <form type="hidden" id="createReviewForm" onSubmit={props.submitReview}>
+            <div className="group">
+                <label>Title</label>
+                <input type="text" value={props.formData.title} onChange={(e) => props.changeField(e, 'title')} />
             </div>
-        </div>
+            <div className="group">
+                <label>Review</label>
+                <textarea type="text" value={props.formData.password} onChange={(e) => props.changeField(e, 'content')} />
+            </div>
+            <div className="group inputReviewStars">
+                <label>How would you rate this cat?</label>
+                {[...Array(5)].map((n, i) => <i key={i} onChange={(e) => this.changeRating(e)} className="far fa-star"></i>)}
+            </div>
+            <div className="group">
+                <label>Would you recommend this cat?</label>
+                <input id="recommendationCheck" type="checkbox" onChange={(e) => props.changeField(e, 'recommendation')} />
+            </div>
+            <button className="primary">Submit</button>
+        </form>
     </>
   
   )
 }
 
 export default Form;
-
-// style={{ backgroundImage: `url(${})` }}
-{/* <span style={{color:"red"}}>{this.state.errorMsg}</span> */}

@@ -16,32 +16,38 @@ connection.connect(err => {
     }
 })
 
-
-
 connection.getCatReviews = (catName, cb) => {
     connection.query('select * from reviews INNER JOIN cats ON (cats.catName=(?) AND reviews.cat_id=cats.id )', catName, (err, results) => {
         if (err) {
             console.log(err, 'err in database query')
             cb(err, null);
         } else {
-            // console.log(results)
             cb(null, results);
         }
     })
 };
 
-connection.addReview = (author, title, content, rating, recommendation, cb) => {
-    connection.query('insert into reviews (review_author, review_title, review_content, review_rating, review_value, review_taste, review_quality, review_recommendation) values ()', params, (err, results) => {
-        if (err) {
-        console.log(err, 'err in db query')
-            cb(err, null);
-        } else {
-            cb(null, results);
-        }
-    })
-}
+// connection.filterReviewsByType = (filter, cb) => {
+//     connection.query('select * from reviews INNER JOIN cats ON (cats.catName=(?) AND reviews.cat_id=cats.id reviews.review_value=(?) )', filter, (err, results) => {
+//         if (err) {
+//             console.log(err, 'err in database query')
+//             cb(err, null);
+//         } else {
+//             cb(null, results);
+//         }
+//     })
+// };
+
+// connection.addReview = (author, title, content, rating, recommendation, cb) => {
+//     connection.query('insert into reviews (review_author, review_title, review_content, review_rating, review_value, review_taste, review_quality, review_recommendation) values ( review_author=(?))', params, (err, results) => {
+//         if (err) {
+//         console.log(err, 'err in db query')
+//             cb(err, null);
+//         } else {
+//             cb(null, results);
+//         }
+//     })
+// }
 
 
 module.exports = connection;
-
-// INNER JOIN cats ON (cats.catName =(?) AND reviews.cat_id=cats.id)

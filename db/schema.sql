@@ -28,8 +28,9 @@ DROP TABLE IF EXISTS reviews;
 CREATE TABLE reviews (
   id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
   cat_id INT NOT NULL,
+  -- user_id INT NOT NULL, 
   review_title VARCHAR(255) NOT NULL,
-  review_author VARCHAR(255) NOT NULL,
+  review_author VARCHAR(255) NULL DEFAULT "NEW_USER",
   review_rating INTEGER(45) NOT NULL DEFAULT 0,
   review_value INTEGER(45) DEFAULT NULL,
   review_taste INTEGER(45) DEFAULT NULL,
@@ -44,6 +45,21 @@ CREATE TABLE reviews (
     REFERENCES cats(id)
     ON DELETE CASCADE
 );
+
+-- DROP TABLE IF EXISTS users;
+		
+-- CREATE TABLE users (
+--   id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--   name VARCHAR(255) NOT NULL,
+--   userName VARCHAR(255) NOT NULL,
+--   email VARCHAR(255) NOT NULL,
+--   mobileNumber VARCHAR(255) DEFAULT NULL,
+--   INDEX categ_ind (categoryID),
+--   FOREIGN KEY (categoryID)
+--     REFERENCES categories(ID)
+--     ON DELETE CASCADE,
+--   UNIQUE KEY (catName)
+-- );
 
 
 -- ---
@@ -181,106 +197,100 @@ INSERT INTO cats (catName, categoryID) VALUES ('Raven', 4);
 -- reviews --
 
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is a great cat', 'user_name', 2, 2, 4 , 1 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is a great cat', 'user_name', 1, 1, 4 , 1 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
 (1, 'This is a great cat', 'user_name', 2, 2, 4 , 1 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is a BORING cat', 'user_name', 4, 3, 2 , 5 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is a BORING cat', 'user_name', 3, 3, 2 , 5 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is a BORING cat', 'user_name', 4, 3, 2 , 5 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is a BORING cat', 'user_name', 4, 4, 2 , 5 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is a not great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is a not great cat', 'user_name', 5, 5, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is a not great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is a not great cat', 'user_name', 4, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is not a cat!', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is not a cat!', 'user_name', 3, 3, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is not a cat!', 'user_name', 1, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is not a cat!', 'user_name', 4, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'I wanted a great cat, so I got a great cat.', 'user_name', 1, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'I wanted a great cat, so I got a great cat.', 'user_name', 4, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'I wanted a great cat, so I got a great cat.', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'I wanted a great cat, so I got a great cat.', 'user_name', 3, 3, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This store is wild!! BEST CATS', 'user_name', 1, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This store is wild!! BEST CATS', 'user_name', 4, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This store is wild!! BEST CATS', 'user_name', 1, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This store is wild!! BEST CATS', 'user_name', 1, 1, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'Never buying another cat', 'user_name', 2, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'Never buying another cat', 'user_name', 2, 2, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'Never buying another cat', 'user_name', 2, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'Never buying another cat', 'user_name', 3, 3, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is not a funny cat', 'user_name', 5, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is not a funny cat', 'user_name', 5, 5, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a funny cat', 'user_name', 5, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a funny cat', 'user_name', 1, 1, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'I shouldv\'e got a dog instead', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'I shouldv\'e got a dog instead', 'user_name', 3, 3, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'I shouldv\'e got a dog instead', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'I shouldv\'e got a dog instead', 'user_name', 2, 2, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 4, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 1, 1, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 4, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 5, 5, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 5, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 3, 3, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(3,'This is a great cat', 'user_name', 5, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(3,'This is a great cat', 'user_name', 2, 2, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is a great cat', 'user_name', 5, 5, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is a splendid cat', 'user_name', 1, 1, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is a weird cat', 'user_name', 3, 3, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is a funny cat', 'user_name', 2, 2, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is a missing cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is a dreamy cat', 'user_name', 4, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(1, 'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(1, 'This is a dumb cat', 'user_name', 3, 3, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a lost cat', 'user_name', 2, 2, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a store cat', 'user_name', 1, 1, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a flying cat', 'user_name', 5, 5, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a blue eyed cat', 'user_name', 4, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 3, 3, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 2, 2, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 1, 1, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 2, 2, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 3, 3, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 4, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 5, 5, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 3, 3, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 4, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(2,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(2,'This is a great cat', 'user_name', 2, 2, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(3,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(3,'This is a great cat', 'user_name', 1, 1, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(3,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(3,'This is a great cat', 'user_name', 3, 3, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(3,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
-INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(3,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
+(3,'This is a great cat', 'user_name', 5, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
 (3,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
-INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(3,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
-INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
-(4,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES
 (4,'This is a great cat', 'user_name', 3, 4, 2 , 2 , 'I had a great time picking out this cat. The staff was PURRIFIC!! However, I would never get another cat.', 0, 0 );
 INSERT INTO reviews (cat_id, review_title, review_author, review_rating, review_value, review_taste, review_quality, review_content, review_is_helpful, review_is_not_helpful) VALUES

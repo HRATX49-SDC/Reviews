@@ -2,6 +2,7 @@ import React from 'react';
 import Ratings from './Ratings.jsx';
 
 const DashBoard = (props) => {
+  let valueFill = props.data.recommendationPercent * 1.08;
     return (
       <>
         <div>
@@ -15,7 +16,7 @@ const DashBoard = (props) => {
                       <div className="averrating">
                         {props.data.avgRating}
                       </div>
-                      <div className="starzzz">
+                      <div id="starContainer" className="starzzz">
                         {[...Array(5)].map((n, i) => i >= props.data.avgRating ? <i key={i} className="far fa-star"></i> : <i key={i} className="fas fa-star"></i>)}
                       </div>
                       <div className="h-text">
@@ -39,7 +40,7 @@ const DashBoard = (props) => {
                               cy="19"
                               r="18"
                               strokeWidth="2"
-                              strokeDasharray={`${props.data.totalNumberOfRatings}, 160`}
+                              strokeDasharray={`${valueFill}, 160`}
                               strokeLinecap="round"
                               transform="rotate(-90 19 19)"
                               />

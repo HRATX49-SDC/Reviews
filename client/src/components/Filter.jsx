@@ -9,9 +9,17 @@ const Filter = (props) => {
             <select onChange={(e) => props.sort(e)}>
                 {props.sortTypes.map((e, i) => { return ( <option key={i} value={e}>sort by {e}</option> )})}
             </select>
-            <select onChange={(e) => props.filter(e)}>
-                {props.filterTypes.map((e, i) => { return (<option key={i} value={e}>filter by {e}</option> )})}
+            <select id="filterSelector" onChange={(e) => props.filter(e)}>
+                {[...Array(5)].map((n, i) => { return (<option key={i} value={n}>filter by {i} stars</option> )})}
             </select>
+          {/* <button>sort by <span>{props.sortBy}</span></button>
+          <button onChange={(e) => props.filterByRating(e)}>filter by <span>5 stars</span></button>
+            <div className="sortList">
+            {props.sortTypes.map((e, i)=> { return (<ul className="sortListItem" key={i} value={e} onChange={(e) => props.sort(e)}>{e}</ul>)})}
+            </div>
+            <div className="sortList">
+            {props.filterTyes.map((e, i)=> { return (<ul className="sortListItem" key={i} value={e} onChange={(e) => props.sort(e)}>{e}</ul>)})}
+            </div> */}
           </form>
         </div>
       </>
@@ -19,15 +27,3 @@ const Filter = (props) => {
 }
  
 export default Filter;
-  // constructor(props) {
-  //   super(props);
-  //     this.state = { 
-  //       reviews: [],
-  //       sortBy: 'most recent',
-  //       filterBy: '',
-  //       expanded: false,
-  //       sortTypes: ['most recent', 'highest rated', 'lowest rated', 'most helpful'],
-  //       filterTypes: ['5 stars', '4 stars', '3 stars', '2 stars', '1 star', '0 stars']
-  //     }
-  // }
-  // render() { 

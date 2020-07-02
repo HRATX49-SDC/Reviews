@@ -1,7 +1,6 @@
 import React from 'react';
 import Ratings from './Ratings.jsx';
 import moment from 'moment'
-// import Star from './Star.jsx';
 
 const Review = (props) => {
   let positive = 
@@ -33,7 +32,6 @@ const Review = (props) => {
                   <div className="starzzz">
                     <div className="rating">
                       {[...Array(5)].map((n, i) => i >= props.review.review_value ? <i key={i} className="far fa-star"></i> : <i key={i} className="fas fa-star"></i>)}
-                      {/* {[...Array(5)].map((n, i) => n >= props.review.rating[0][1] ? <Star key={i} fill={n}/> : <Star key={i} fill={n} />)} */}
                     </div>
                   </div>
                 </div>
@@ -41,14 +39,6 @@ const Review = (props) => {
                   <span className={props.review.recommendation === "Would recommend" ? "recommendation-positive" : "recommendation-negative"}>
                     {/* <div> */}
                     {props.review.recommendation === "Would recommend" ? positive : negative}
-                      {/* <svg width="24" height="24" viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                      focusable="false">
-                        <path d="M12.032 22.063c5.55 0 10.05-4.5 10.05-10.05 0-5.55-4.5-10.05-10.05-10.05-5.55 0-10.05 4.5-10.05 10.05 0 5.55 4.5 10.05 10.05 10.05zm0 .95c-6.075 0-11-4.925-11-11 0-6.076 4.925-11 11-11s11 4.924 11 11c0 6.075-4.925 11-11 11zm4.462-15.168a1 1 0 011.512 1.31l-6.5 7.5a1 1 0 01-1.38.126l-3.75-3a1 1 0 111.249-1.562l2.999 2.4 5.87-6.774z" 
-                        fillRule="evenodd">
-                        </path>
-                      </svg> */}
-                    {/* </div> */}
                   </span>
                   <span className="rec-padding">{props.review.recommendation}</span>
                 </div>
@@ -69,9 +59,6 @@ const Review = (props) => {
                             item={item[0]}
                             value={item[1]}
                             index={i}
-                            // taste={props.review.review_taste}
-                            // value={props.review.review_value}
-                            // quality={props.review.review_quality}
                             />
                       )})}
                   </div>
