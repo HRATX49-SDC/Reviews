@@ -40,7 +40,31 @@ button.secondary:hover,
 	border-color: rgb(0, 0, 0);
 }
 
-.help-button {
+button.help-button {
+    position: relative;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    user-select: none;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1.42857;
+    color: rgb(51, 51, 51);
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    margin-bottom: 8px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border-color: rgb(136, 136, 136);
+}
+
+button.help-button {
     position: relative;
     font-weight: normal;
     text-align: center;
@@ -65,18 +89,15 @@ button.secondary:hover,
 }
 
 
-.fa-star,
-.fa-map-marker-alt {
+
+.fa-star {
 	color: gold;
 }
 
+.fa-star.review:hover {
+	color: gold;
+}
 
-/* .container {
-	display: inline-block;
-	margin-top: 16px;
-	margin-bottom: 20px;
-	text-align: center;
-} */
 
 
 /* button,
@@ -93,57 +114,155 @@ button.secondary:hover,
 	transition: background-color .3s, border .3s, color .3s;
 } */
 
-button.small {
-	height: 34px;
-	padding: 4px 15px;
+
+.review-button-contaner {
+	display: block;
+	box-sizing: border-box;
+	font-size: 14px;
+	margin: 30px 0px;
+	text-align: center;
+
 }
 
-button.cancel,
-.button.cancel {
-	position: absolute;
-	top: 0;
-	right: 0;
-	border-radius: 50%;
+.modal {
+	display: block;
+	position: relative;
+	/* box-sizing: border-box; */
+	/* position: inherit; */
+	background-color: rgb(255, 255, 255);
+	/* height: fit-content;
+	width: fit-content; */
+	height: 80px;
+	width: 180px;
+	font-size: 16px;
+	text-align: center;
+	border-color: rgb(51, 51, 51);
+	/* border-bottom: 1px solid; */
+}
+.no-modal {
+	
+}
+
+/* DASHBOARD */
+
+.reviewdashboard {
+	display: block;
+	box-sizing: border-box;
+	font-size: 14px;
+	margin: 16px 0px 20px 0px;
+	padding: 0px 16px;
+	text-align: center;
+}
+
+.top-dash-rating {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	font-size: 14px;
+	line-height: 30px;
+}
+
+.dash-primary-summary {
+	display: flex;
+	max-width: 375px;
+	margin: 20px 0px;
+	padding: 0px 12px;
+}
+
+.circle-overlay {
+	display: block;
+	box-sizing: border-box;
+	font-size: 14px;
+	text-align: center;
+	line-height: 20px;
+}
+
+.recommend-circle {
+	box-sizing: border-box;
+	display: inline-block;
+	font-size: 14px;
+	height:	50px;
+	position: relative;
+	text-align: center;
 	width: 50px;
-	height: 50px;
-	padding: 14px;
+}
+
+.recommendation-summary {
+	display: block;
+	font-size: 14px;
+	line-height: 20px;
+	margin: 0px 12px;
+	text-align: center;
+}
+
+.percent-recommend {
+	display: block;
+	box-sizing: border-box;
+	color: rgb(51, 51, 51);
+	font-size: 16px;
+	font-weight: 700;
+	text-align: center;
+}
+
+.total-recs {
+	display: block;
 	text-align: center;
 	box-sizing: border-box;
 }
 
-button.full {
-	width: 100%;
+.first {
+	display: block;
+	text-align: center;
+	margin: 0px 4px;
+}
+
+.averrating {
+	display: block;
+	font-size: 40px;
 	font-weight: bold;
+	line-height: 60px;
+	text-align: center;
 }
 
-button.pay {
-	margin-top: 20px;
-}
-
-	.filters {
+.filters {
+	display: flex;
+	flex-basis: auto;
+	flex-direction: row;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-wrap: wrap;
+	font-size: 14px;
+	outline-color: rgb(51, 51, 51);
 	padding: 10px 50px;
 	border-bottom: 1px solid #e2e2e2;
+	margin: 20px 0px;
+	padding: 16px;
+	background-color: rgb(247, 247, 247);
 }
 
 .filters button {
-	height: 33px;
+	height: 40px;
 	font-size: 14px;
 	padding: 7px 12px;
 	background: white;
-	border: 1px solid #e2e2e2;
+	border: 1px solid;
+	font-weight: 500;
 	margin-right: 10px;
 	border-radius: 5px;
+	padding: 10px 50px;
 	cursor: pointer;
+	color: rgb(51, 51, 51);
+	outline-color: rgb(51, 51, 51);
 }
 
 .filters button:hover {
-	background-color: tomato;
-	border-color: tomato;
-	color: white;
+	outline-color: rgb(51, 51, 51);
+	background-color: rgb(247, 247, 247);
 }
 
 .filters select {
-	height: 34px;
+	height: 40px;
 	width: auto;
 	font-size: 14px;
 	background: white;
@@ -153,6 +272,38 @@ button.pay {
 	min-width: 100px;
 	margin-right: 10px;
 	box-sizing: border-box;
+}
+
+.sortList {
+	display: block;
+	width: fit-content;
+	padding: 15px;
+	font-size: 14px;
+	text-align: center;
+	background-color: rgb(255, 255, 255);
+	border: 1px solid rgb(51, 51, 51);
+	margin: 0px 15px 15px 15px;
+}
+
+.sortListItem {
+	display: block;
+	padding: 5px 10px;
+	margin: 15px;
+	border-bottom: 1px solid rgba(51, 51, 51, 0.671);
+
+}
+
+.sortListItem:hover {
+	text-decoration: underline;
+}
+
+.sortList ul {
+	display: block;
+	/* border-bottom: 1px solid black; */
+}
+
+.filters span {
+	font-weight: bold;
 }
 
 .filters .search {
@@ -175,6 +326,13 @@ button.pay {
 	border-color: #00988f;
 }
 
+.matching-reviews {
+	display: block;
+	font-size: 16px;
+	padding-left: 32px;
+	color: rgb(51, 51, 51);
+}
+
 /* RATINGS */
 
 .rating-dashboard {
@@ -189,10 +347,15 @@ button.pay {
 	box-sizing: border-box;
 	display: flex;
 	font-size: 14px;
+	line-height: 20px;
 	margin: 12px 0px;
 	text-align: left;
 	width: 150px;
 }
+/* @media (min-width: 375px) {
+	width: 150px;
+} */
+
 
 .circle {
 	box-sizing: border-box;
@@ -213,7 +376,7 @@ button.pay {
 	text-align: left;
 }
 
-div.rating-type > h4 {
+.rating-type  h4 {
 	box-sizing: border-box;
 	display: block;
 	font-size: 14px;
@@ -222,28 +385,29 @@ div.rating-type > h4 {
 	text-align: left;
 }
 
-.ratingSize {
+.rating-size {
 	box-sizing: border-box;
 	color: rgb(102, 102, 102);
 	display: block;
 	font-size: 14px;
+	font-weight: normal;
 	text-align: left;
 }
 
 /* REVIEW */
 
-svg:not(:root) {
+/* svg:not(:root) {
 	overflow: hidden;
-}
+} */
 
 svg.guBQVc {
     height: 18px;
     width: 90px;
 }
 
-*, ::before, ::after {
+/* *, ::before, ::after {
 	box-sizing: inherit;
-}
+} */
 
 .reviews-h {
 	box-sizing: border-box;
@@ -282,8 +446,10 @@ svg.guBQVc {
 	text-indent: 0px;
 	box-sizing: inherit;
 	border-radius: 4px;
+	margin-block-end: 8px;
+	margin-block-start: 8px;
 	margin: 0px 0px 8px 0px;
-	padding: 20px;
+	/* padding: 20px; */
 }
 
 .review-card-wrapper {
@@ -301,15 +467,12 @@ svg.guBQVc {
 	text-align: left;
 	line-height: 20px;
 	border-radius: 4px;
-	margin: 0px 0px 8px 0px;
-	padding: 20px;
 }
 
-.card.content {
-display: block;
+.content {
+	display: block;
 	box-sizing: border-box;
 	color: rgb(51, 51, 51);
-	display: block;
 	flex-grow: 1;
 	font-size: 14px;
 	text-align: left;
@@ -344,7 +507,15 @@ display: block;
 	color: rgb(51, 51, 51);
 }
 
-.card.recommendation {
+.h-text {
+	display: block;
+	color: rgb(51, 51, 51);
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+}
+
+.recommendation {
 	display: inline-flex;
 	align-items: center;
 	box-sizing: border-box;
@@ -359,7 +530,7 @@ display: block;
 	outline-style: none;
 }
 
-.card.recommendation-positive {
+.recommendation-positive {
 	display: block;
 	align-items: center;
 	box-sizing: border-box;
@@ -369,13 +540,36 @@ display: block;
 	fill: rgb(0, 162, 0);
 	text-align: left;
 	vertical-align: baseline;
-	outline-color: rgb(51, 51, 51);
-	border-left: 1px solid rgb(214, 214, 214);
+	outline-color: none;
+	/* border-left: 1px solid rgb(214, 214, 214); */
 	font-size: 16px;
 	font-weight: bold;
-	margin-left: 12px;
-	padding-left: 12px;
 	outline-style: none;
+}
+
+.recommendation-negative {
+	display: block;
+	align-items: center;
+	box-sizing: border-box;
+	height: 24px;
+	width: 24px;
+	color: rgb(232, 105, 0);
+	fill: rgb(232, 105, 0);
+	text-align: left;
+	vertical-align: baseline;
+	outline-color: none;
+	/* border-left: 1px solid rgb(214, 214, 214); */
+	font-size: 16px;
+	font-weight: bold;
+	outline-style: none;
+}
+
+.rec-padding {
+	box-sizing: border-box;
+	font-size: 14px;
+	padding-left: 4px;
+	text-align: left;
+	color: rgb(51, 51, 51);
 }
 
 .user-review-info {
@@ -426,8 +620,9 @@ display: block;
 }
 
 .review-card-metrics {
-	display: flex;
+	display: block;
 	box-sizing: border-box;
+	flex-grow: 1;
 	flex-direction: column;
 	font-size: 14px;
 	line-height: 20px;
@@ -441,13 +636,13 @@ display: block;
 }
 
 .review-dash-overlay {
-	display: block;
+	display: inline-block;
 	box-sizing: border-box;
 	color: rgb(51, 51, 51);
 	display: block;
 	flex-grow: 1;
 	font-size: 14px;
-	text-align: left;
+	text-align: center;
 	line-height: 20px;
 	outline-color: rgb(51, 51, 51);
 }
@@ -459,12 +654,11 @@ display: block;
 	font-size: 14px;
 	margin-top: 12px;
 	outline-color: rgb(51, 51, 51);
-	max-width: 455px;
+	max-width: 755px;
 	outline-style: none;
 	outline-width: 0px;
 	font-weight: bold;
 	text-align: left;
-	padding-left: 12px;
 	outline-style: none;
 }
 
@@ -489,13 +683,22 @@ display: block;
 	outline-color: rgb(51, 51, 51);
 }
 
+
+.helpful-button-overlay {
+	display: block;
+	box-sizing: border-box;
+	text-align: left;
+	line-height: 20px;
+	outline-width: 0px;
+}
+
 .helpful-overlay {
 	display: flex;
 	box-sizing: border-box;
 	flex-wrap: wrap;
 	color: rgb(51, 51, 51);
 	font-size: 14px;
-	height: 31px;
+	height: 20px;
 	line-height: 20px;
 	outline-color: rgb(51, 51, 51);
 	outline-style: none;
@@ -529,6 +732,76 @@ display: block;
 	width: 120px;
 }
 
-.report-button {
 
+.reviews {
+	margin-top: 40px;
+}
+
+.reviews form {
+	margin-bottom: 40px;
+}
+
+.review {
+	margin-bottom: 20px;
+}
+
+.review p {
+	margin-bottom: 0;
+}
+
+.review .rating {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+}
+
+
+form input {
+	width: 100%;
+	height: 40px;
+	font-size: 16px;
+	padding: 10px 15px;
+	box-sizing: border-box;
+	border-radius: 4px;
+	border: 1px solid rgb(102, 102, 102);
+	margin-bottom: 10px;
+	outline-color: rgb(51, 51, 51);
+}
+
+form label {
+	display: inline;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	color: #8a8a8a;
+}
+
+form textarea {
+	width: 100%;
+	border-radius: 4px;
+	font-size: 16px;
+	padding: 10px 15px;
+	box-sizing: border-box;
+	height: 100px;
+	border: 1px solid rgb(102, 102, 102);
+	outline-color: rgb(51, 51, 51);
+}
+
+form button {
+	margin: 8px;
+}
+
+input[type="checkbox"] {
+	display: inline-flex;
+	width: auto;
+	height: auto;
+	margin: 5px;
+	background-color: rgb(170, 0, 0);
+}
+
+.inputReviewStars {
+	display: block;
+}
+
+form .group + .group {
+	margin-top: 30px;
 }

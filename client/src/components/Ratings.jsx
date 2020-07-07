@@ -2,27 +2,13 @@ import React from 'react';
 
 const Ratings = (props) => {
 
-
 let valueFill = props.value * 23;
-let tasteFill = props.taste * 23;
-let qualityFill = props.quality * 23;
-// // console.log(props.item)
-// let ratings = props.item;
-// let ratingObj = {};
-// let result = ratings.map((item, key) => {
-//   if (ratingObj[ratings[key]] !== undefined) {
-//     ratingObj[ratings[item]] = ratingObj[ratings[item]];
-//   } else {
-//     ratingObj[ratings[item]] = ratings[item];
-//   }
-//   return ratingObj;
-// })
 
   return (
     <>
-        {/* <div className="rating-container"> */}
+        <div className="rating-container">
           <div className="circle">
-            <svg viewBox="0 0 1200 38">
+            <svg viewBox="0 0 38 38">
               <circle stroke="#f7f7f7"
               fill="transparent"
               cx="19"
@@ -30,7 +16,7 @@ let qualityFill = props.quality * 23;
               r="18"
               strokeWidth="2"
               />
-              <circle stroke="red"
+              <circle stroke= {`${props.value < 3 ? `rgb(232, 105, 0)` : `rgb(0, 131, 0)` }`}
               fill="transparent"
               cx="19"
               cy="19"
@@ -42,17 +28,17 @@ let qualityFill = props.quality * 23;
               />
               <text textAnchor="middle"
               fontSize="14"
-              fill="blue"
+              fill={`${props.value < 3 ? `rgb(232, 105, 0)` : `rgb(0, 131, 0)` }`}
               x="19"
               y="24.6"
-              >{props.item}</text>
+              >{props.value}</text>
             </svg>
           </div>
             <div className="rating-type">
-              <h4>{props.item}</h4>
+              <div>{props.item}</div>
               <div className="rating-size">out of 5</div>
             </div>
-        {/* </div> */}
+        </div>
     </>
   )
 }
