@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const db = require('../db/MongoDBMongoose.js');
+const db = require('../db/mongoDBVanilla.js');
 const compression = require('compression');
 
 const PORT = process.env.PORT || 5200;
@@ -44,9 +44,7 @@ app.put(`/reviews`, async (req, res) => {
 });
 
 app.delete(`/reviews`, async (req, res) => {
-  console.log('Delete Request received');
   try {
-    console.log(req.query.id);
     let results = await db.deleteCatReview(req.query.id)
     res.status(200).send(results);
   } catch(error) {

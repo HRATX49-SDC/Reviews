@@ -14,7 +14,7 @@ const generateDate = () => {
 
 const generateRandomCat = (id) => {
  let review = {
-  catName: faker.name.firstName(),
+  catName: faker.name.findName(),
   catId: id,
   title: faker.random.words(),
   author: faker.lorem.word(),
