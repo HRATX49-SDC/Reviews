@@ -6,6 +6,7 @@ const
 db.on('error', console.log.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log('Connected to MongoDB via Mongoose');
+  //interact
 })
 
 module.exports = db;
