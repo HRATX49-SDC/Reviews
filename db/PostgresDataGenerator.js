@@ -31,23 +31,21 @@ const generateDate = () => {
 //  return review;
 // }
 
-const generateRandomCat = (id) => {
+const generateRandomCat = () => {
     return {
         catName: faker.name.findName(),
-        catId: id
     }
 }
 
-const generateReviews = (id) => {
+const generateReviews = () => {
     return {
-        id: id,
         catId: Math.floor(Math.random() * 9999999) + 1,
         title: faker.random.words(),
         author: faker.lorem.word(),
-        rating: Math.floor(Math.random() * 6),
-        value: Math.floor(Math.random() * 6),
-        taste: Math.floor(Math.random() * 6),
-        qualtiy: Math.floor(Math.random() * 6),
+        rating: Math.floor(Math.random() * 5),
+        value: Math.floor(Math.random() * 5),
+        taste: Math.floor(Math.random() * 5),
+        qualtiy: Math.floor(Math.random() * 5),
         content: faker.lorem.sentences(),
         helpful: Math.floor(Math.random() * 10),
         notHelpful: Math.floor(Math.random() * 10),
@@ -58,7 +56,7 @@ const generateReviews = (id) => {
 const dataGen = () => {
   writer.pipe(fs.createWriteStream('postgresReviews.csv'));
   for(var i = 0; i < 10000000; i++) {
-    writer.write(generateReviews(count++))
+    writer.write(generateReviews())
   }
 
   writer.end();

@@ -8,7 +8,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log('Connected to MongoDB via Mongoose');
-  //interact
+  
   const schema = new mongoose.Schema({
     catName: String,
     catId: Number,
@@ -23,54 +23,43 @@ db.once('open', () => {
     notHelpful: Number,
     date: Date
   })
+
   const Review = mongoose.model('Review', schema);
 
-  db.getCatReviews = (catName) => {
-    return new Promise((resolve, reject) => {
-      Review.findOne({ catName: catName}, ((err, doc) => {
-        if(err) {
-          reject(err);
-        } else {
-          resolve(doc);
-        }
-      }));
-    });
+  db.getCatReviews = async (catName) => {
+    try{
+      let result = await Review.findOne({ catName: catName});
+      return result;
+    } catch(err) {
+      throw new Error(err);
+    }
   };
 
-  db.postCatReview = (review) => {
-    return new Promise((resolve, reject) => {
-      Review.create(review, ((err, doc) => {
-        if(err) {
-          reject(err);
-        } else {
-          resolve(doc);
-        }
-      }));
-    });
+  db.postCatReview = async (review) => {
+    try{
+      let result = await Review.create(review);
+      return result;
+    } catch(err) {
+      throw new Error(err);
+    }
   }
 
-  db.deleteCatReview = (catId) => {
-    return new Promise((resolve, reject) => {
-      Review.deleteOne({_id: ObjectId(catId)}, ((err, doc) => {
-        if(err) {
-          reject(err);
-        } else {
-          resolve(doc);
-        }
-      }));
-    });
+  db.deleteCatReview = async (catId) => {
+    try{
+      let result = await Review.deleteOne({_id: ObjectId(catId)});
+      return result;
+    } catch(err) {
+      throw new Error(err);
+    }
   }
 
-  db.updateCatReview = (newReview, catId) => {
-    return new Promise((resolve, reject) => {
-      Review.updateOne({ _id: ObjectId(catId)}, newReview, ((err, docs) => {
-        if(err) {
-          reject(err);
-        } else {
-          resolve(docs);
-        }
-      }));
-    });
+  db.updateCatReview = async (newReview, catId) => {
+    try{
+      let result = await Review.updateOne({ _id: ObjectId(catId)}, newReview);
+      return result;
+    } catch(err) {
+      throw new Error(err);
+    }
   }
 
 })

@@ -13,63 +13,44 @@ client.connect((err) => {
   assert.equal(null, err);
   console.log('Successfully connected to mongoDB (vanilla)');
 
-  //client.getCatReviews("Rashad Kuhlman II");
+  const db = client.db(dbName);
+  const collection = db.collection(collName);
+
+  client.getCatReviews = async (catName) => {
+    try {
+      let result = await collection.findOne({ catName: catName});
+      return result;
+    } catch(err) {
+      throw new Error(err);
+    }
+  };
+
+  client.postCatReview = async (review) => {
+    try {
+      let result = await collection.insertOne(review);
+      return result;
+    } catch(err) {
+      throw new Error(err);
+    }
+  };
+  
+  client.deleteCatReview = async (catId) => {
+    try{
+      let result = await collection.deleteOne({"_id": ObjectID(catId)});
+      return result;
+    } catch(err) {
+      throw new Error(err);
+    }
+  };
+  
+  client.updateCatReview = async (newReview, catId) => {
+    try {
+      let result = await collection.updateOne({ _id: ObjectID(catId)}, {$set: newReview});
+      return result;
+    } catch(err) {
+      throw new Error(err);
+    }
+  };
 })
-
-client.getCatReviews = (catName) => {
-  const db = client.db(dbName);
-  const collection = db.collection(collName);
-  return new Promise((resolve, reject) => {
-    collection.findOne({ catName: catName}, ((err, doc) => {
-      if(err) {
-        reject(err);
-      } else {
-        resolve(doc);
-      }
-    }));
-  });
-};
-
-client.postCatReview = (review) => {
-  const db = client.db(dbName);
-  const collection = db.collection(collName);
-  return new Promise((resolve, reject) => {
-    collection.insertOne(review, (err, doc) => {
-      if(err) {
-        reject(err);
-      } else {
-        resolve(doc);
-      }
-    });
-  });
-};
-
-client.deleteCatReview = (catId) => {
-  const db = client.db(dbName);
-  const collection = db.collection(collName);
-  return new Promise((resolve, reject) => {
-    collection.deleteOne({"_id": ObjectID(catId)}, ((err, doc) => {
-      if(err) {
-        reject(err);
-      } else {
-        resolve(doc);
-      }
-    }));
-  });
-};
-
-client.updateCatReview = (newReview, catId) => {
-  const db = client.db(dbName);
-  const collection = db.collection(collName);
-  return new Promise((resolve, reject) => {
-    collection.updateOne({ _id: ObjectID(catId)}, {$set: newReview}, ((err, docs) => {
-      if(err) {
-        reject(err);
-      } else {
-        resolve(docs);
-      }
-    }));
-  });
-};
 
 module.exports = client;
