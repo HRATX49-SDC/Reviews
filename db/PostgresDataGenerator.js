@@ -12,29 +12,53 @@ const generateDate = () => {
   return `2020-0${month}-0${day}`;
 };
 
-const generateRandomCat = (id) => {
- let review = {
-  catName: faker.name.findName(),
-  catId: id,
-  title: faker.random.words(),
-  author: faker.lorem.word(),
-  rating: Math.floor(Math.random() * 6),
-  value: Math.floor(Math.random() * 6),
-  taste: Math.floor(Math.random() * 6),
-  qualtiy: Math.floor(Math.random() * 6),
-  content: faker.lorem.sentences(),
-  helpful: Math.floor(Math.random() * 10),
-  notHelpful: Math.floor(Math.random() * 10),
-  date: generateDate()
- };
+// const generateRandomCat = (id) => {
+//  let review = {
+//   catName: faker.name.findName(),
+//   catId: id,
+//   title: faker.random.words(),
+//   author: faker.lorem.word(),
+//   rating: Math.floor(Math.random() * 6),
+//   value: Math.floor(Math.random() * 6),
+//   taste: Math.floor(Math.random() * 6),
+//   qualtiy: Math.floor(Math.random() * 6),
+//   content: faker.lorem.sentences(),
+//   helpful: Math.floor(Math.random() * 10),
+//   notHelpful: Math.floor(Math.random() * 10),
+//   date: generateDate()
+//  };
 
- return review;
+//  return review;
+// }
+
+const generateRandomCat = (id) => {
+    return {
+        catName: faker.name.findName(),
+        catId: id
+    }
+}
+
+const generateReviews = (id) => {
+    return {
+        id: id,
+        catId: Math.floor(Math.random() * 9999999) + 1,
+        title: faker.random.words(),
+        author: faker.lorem.word(),
+        rating: Math.floor(Math.random() * 6),
+        value: Math.floor(Math.random() * 6),
+        taste: Math.floor(Math.random() * 6),
+        qualtiy: Math.floor(Math.random() * 6),
+        content: faker.lorem.sentences(),
+        helpful: Math.floor(Math.random() * 10),
+        notHelpful: Math.floor(Math.random() * 10),
+        date: generateDate()
+    }
 }
 
 const dataGen = () => {
-  writer.pipe(fs.createWriteStream('dummy.csv'));
-  for(var i = 0; i < 10; i++) {
-    writer.write(generateRandomCat(count++))
+  writer.pipe(fs.createWriteStream('postgresReviews.csv'));
+  for(var i = 0; i < 10000000; i++) {
+    writer.write(generateReviews(count++))
   }
 
   writer.end();
