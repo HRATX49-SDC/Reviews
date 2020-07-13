@@ -24,6 +24,7 @@ pool.on('error', (err, client) => {
 pool.getCatReviews = async (catName) => {
   try{
     let result = await pool.query('SELECT * FROM reviews WHERE "catId"=(Select "catId" FROM cats WHERE "catName" = $1 LIMIT 1)', [catName]);
+    // let result = await pool.query('SELECT "catName" FROM cats WHERE "catId" > 9900000 LIMIT 10000');
     return result.rows;
   } catch(err) {
     console.log(err)

@@ -5,7 +5,7 @@ const url = 'mongodb://localhost:27017';
 const dbName = 'sdc';
 const collName = 'reviews';
 
-const client = new MongoClient(url);
+const client = new MongoClient(url, { useUnifiedTopology: true });
 // const db = client.db(dbName);
 // const collection = db.collection(collName);
 
@@ -18,7 +18,7 @@ client.connect((err) => {
 
   client.getCatReviews = async (catName) => {
     try {
-      let result = await collection.findOne({ catName: catName});
+      let result = await collection.find({ "catName": catName});
       return result;
     } catch(err) {
       throw new Error(err);

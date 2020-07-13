@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { ObjectId } = require('mongodb');
-mongoose.connect('mongodb://localhost/sdc', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/sdc', {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 
 
@@ -28,7 +28,7 @@ db.once('open', () => {
 
   db.getCatReviews = async (catName) => {
     try{
-      let result = await Review.findOne({ catName: catName});
+      let result = await Review.find({ catName: catName}).lean();
       return result;
     } catch(err) {
       throw new Error(err);

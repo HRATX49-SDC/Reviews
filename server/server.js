@@ -1,6 +1,7 @@
+require('newrelic');
 const express = require('express');
 const path = require('path');
-const db = require('../db/mongoDBVanilla.js');
+const db = require('../db/Postgres.js');
 const compression = require('compression');
 
 const PORT = process.env.PORT || 5200;

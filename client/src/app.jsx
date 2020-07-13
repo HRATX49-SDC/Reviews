@@ -147,6 +147,7 @@ class App extends React.Component {
     axios.get('/reviews', {params: {catName}})
       .then((res) => {
       let reviews = res.data;
+      console.log(reviews);
       reviews.forEach((review) => {
         review.rating = [
           ['Value', review.review_value],
@@ -180,7 +181,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getReviews('Luna');
+    this.getReviews('Maxime Hansen');
     $('body').on('submit', '.form', (e) => {
       console.log(e.target[0].value);
       let formatted = e.target[0].value.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase());
