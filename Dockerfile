@@ -1,5 +1,5 @@
 FROM node:12
-RUN mkdri /sdc-docker
+RUN mkdir /sdc-docker
 ADD . /sdc-docker
 WORKDIR /sdc-docker
 RUN npm install
