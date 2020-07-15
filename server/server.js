@@ -4,7 +4,7 @@ const path = require('path');
 const db = require('../db/Postgres.js');
 const compression = require('compression');
 
-const PORT = process.env.PORT || 5200;
+const PORT = process.env.PORT || 5201;
 const app = express();
 
 // MiddleWare

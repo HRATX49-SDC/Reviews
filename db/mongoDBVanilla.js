@@ -18,7 +18,7 @@ client.connect((err) => {
 
   client.getCatReviews = async (catName) => {
     try {
-      let result = await collection.find({ "catName": catName});
+      let result = await collection.find({ "catName": catName}).toArray();
       return result;
     } catch(err) {
       throw new Error(err);
