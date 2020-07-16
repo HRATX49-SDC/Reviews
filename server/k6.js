@@ -17,11 +17,18 @@ export let options = {
 export default function() {
   let randIndex = Math.floor(Math.random() * 1000);
   let catName = data[randIndex].catName;
-  let res = http.get(`http://localhost:5200/reviews?catName=${encodeURIComponent(catName)}`);
+  let res = http.get(`http://localhost:5201/reviews?catName=${encodeURIComponent(catName)}`);
   check(res, {
     'status was 200': r => r.status == 200,
     'return array exists': r => {
-      return Array.isArray(r.json())}
+      return Array.isArray(r.json())},
+    'title is a string': r => {
+        let data = r.json();
+        if(data.length) {
+          return data[0].hasOwnProperty('title') && (typeof data[0].title === 'string')
+        }
+        return true;
+      }
     });
   sleep(1);
 }
