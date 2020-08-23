@@ -1,1 +1,3 @@
-# Service
+# System Design - Reviews
+
+This project was created to implement scaling in a legacy code base. During the process of this project, I compared the performance of MongoDB (with and without Mongoose) and PostgreSQL. At each stage I tested different indexing techniques to determine which database would be the most efficient for the existing application. After comparing each database query speed with 10 million db entries, I proceeded to test throughput and latency. Utilmately I chose to deploy the PostgreSQL with hash indexing as it showed a consistent throughput of over 1000 RPS with an average latency of less than 25ms. Additionally the use of hash indexing used less memeory that other index types while matching performance.
