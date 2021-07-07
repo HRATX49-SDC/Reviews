@@ -1,53 +1,75 @@
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-    host: process.env.RDS_HOSTNAME || 'localhost',
-    user: process.env.RDS_USERNAME || 'root',
-    password: process.env.RDS_PASSWORD || 'HackReactor1',
-    port: process.env.RDS_PORT || 3306,
-    database: 'purrget'
+  host: process.env.RDS_HOSTNAME || 'localhost',
+  user: process.env.RDS_USERNAME || 'root',
+  password: process.env.RDS_PASSWORD || 'hackreactor',
+  port: process.env.RDS_PORT || 3306,
+  database: 'purrgetSDC'
 })
 
 connection.connect(err => {
-    if(err) {
-        console.log('error connecting to database.', err);
-    } else {
-        console.log('successfully connected to db.');
-    }
+  if (err) {
+    console.log('error connecting to database.', err);
+  } else {
+    console.log('successfully connected to db.');
+  }
 })
 
-connection.getCatReviews = (catName, cb) => {
+connection.getCatReviews = (catName) => {
+  return new Promise((resolve, reject) => {
     connection.query('select * from reviews INNER JOIN cats ON (cats.catName=(?) AND reviews.cat_id=cats.id )', catName, (err, results) => {
-        if (err) {
-            console.log(err, 'err in database query')
-            cb(err, null);
-        } else {
-            cb(null, results);
-        }
-    })
+      if (err) {
+        console.log(err, 'err in get request')
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  })
 };
 
-// connection.filterReviewsByType = (filter, cb) => {
-//     connection.query('select * from reviews INNER JOIN cats ON (cats.catName=(?) AND reviews.cat_id=cats.id reviews.review_value=(?) )', filter, (err, results) => {
-//         if (err) {
-//             console.log(err, 'err in database query')
-//             cb(err, null);
-//         } else {
-//             cb(null, results);
-//         }
-//     })
-// };
+connection.postCatReview = (review) => {
+  return new Promise ((resolve, reject) => {
+    connection.query('INSERT INTO reviews SET ?', review, (err, results) => {
+      if(err) {
+        console.log(err, 'err in post request');
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    })
+  })
+}
 
-// connection.addReview = (author, title, content, rating, recommendation, cb) => {
-//     connection.query('insert into reviews (review_author, review_title, review_content, review_rating, review_value, review_taste, review_quality, review_recommendation) values ( review_author=(?))', params, (err, results) => {
-//         if (err) {
-//         console.log(err, 'err in db query')
-//             cb(err, null);
-//         } else {
-//             cb(null, results);
-//         }
-//     })
-// }
+connection.deleteCatReview = (reviewId) => {
+  return new Promise ((resolve, reject) => {
+    connection.query('DELETE FROM reviews WHERE id=?', reviewId, (err, results) => {
+      if(err) {
+        console.log(err, 'err in delete request');
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    })
+  });
+}
 
+connection.updateCatReview = (newReview, reviewId) => {
+  return new Promise ((resolve, reject) => {
+    let flatReviews = [newReview.cat_id, newReview.review_title, newReview.review_author, newReview.review_rating, newReview.review_value, newReview.review_taste, newReview.review_quality, newReview.review_content, newReview.review_is_helpful, newReview.review_is_not_helpful, newReview.recommendation, newReview.review_date, reviewId];
+
+    console.log(flatReviews)
+    connection.query('UPDATE reviews SET cat_id=?, review_title=?, review_author=?, review_rating=?, review_value=?, review_taste=?, review_quality=?, review_content=?, review_is_helpful=?, review_is_not_helpful=?, recommendation=?, review_date=? WHERE id=?', flatReviews, (err, results) => {
+      if(err) {
+        console.log(err, 'err in delete request');
+        reject(err);
+      } else {
+        console.log(results);
+        resolve(results);
+      }
+    })
+  });
+}
 
 module.exports = connection;
